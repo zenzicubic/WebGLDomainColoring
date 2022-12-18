@@ -1,2 +1,2 @@
 # WebGLDomainColoring
- A WebGL domain coloring thing I made.
+ A WebGL domain coloring thing I made. It's kinda terrible, and I didn't bother making a math parser thingy so you can edit the formula yourself. It's under the MIT license, so you're free to use it at your discretion.

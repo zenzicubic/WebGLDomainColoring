@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Domain Coloring</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script defer src="static/domcol.js"></script>
+		<script defer src="static/ui.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.144.0/three.min.js"></script>
+		<link rel="stylesheet" href="static/styles.css">
+	</head>
+	<body>
+		<canvas id="canv"></canvas>
+		<button id="menuBtn" onclick="showMenu()">Show Menu</button>
+		<div id="content" hidden>
+			<h1>Domain Coloring</h1>
+			<p>This is a realtime domain coloring thingy made in GLSL with ThreeJS. Use WASD to move, E to zoom in, C to zoom out, and R to reset.
+			<br><br>
+			Unfortunattely I have no idea how to make a math parser thingy, so if you want a different function you'll have to edit it yourself.</p>
+			<hr>
+			<button onclick="hideMenu()">Hide Menu</button>
+		</div>
+	</body>
+</html>

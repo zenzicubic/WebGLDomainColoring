@@ -1,0 +1,46 @@
+canvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+p, h1, h2, label {
+	font-family: Arial;
+	color: white;
+}
+
+hr {
+	background: #070707;
+	height: 5px;
+	border: none;
+}
+
+button {
+	border: none;
+	background: #BB86FC;
+	font-family: Arial;
+	color: #070707;
+
+	padding: 15px;
+	border-radius: 3px;
+}
+
+button:hover {
+	filter: brightness(1.2);
+}
+
+#content {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+
+	background: #070707;
+	border: 5px solid white;
+	width: 30vw;
+}
+
+#menuBtn {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
