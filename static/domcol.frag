@@ -3,11 +3,11 @@
 
 const vec2 ONE = vec2(1., 0.);
 const vec2 I = vec2(0., 1.);
-const vec3[4] cols = vec3[](vec3(0.5), vec3(0.5), vec3(1.), vec3(0., 0.33, 0.67));
 
 out vec4 col;
 
 uniform float scale;
+uniform float aMult, lMult;
 uniform vec2 res;
 uniform vec2 center;
 
@@ -49,31 +49,39 @@ vec2 ccoth(vec2 z) { return cinv(ctanh(z)); }
 vec2 ccsch(vec2 z) { return cinv(csinh(z)); }
 vec2 csech(vec2 z) { return cinv(ccosh(z)); }
 
+vec2 erf(vec2 z) {
+	// Error function using Simpson's rule
+	#define g(z) cexp(-cmul(z, z))
+	#define dt 0.005
+
+	vec2 a, b, s = vec2(0.);
+	for (float t = 0.; t < 1.; t += 2. * dt) {
+		a = z * t, b = z * (t + dt);
+		s += cmul((b - a) / 6., g(a) + g((a + b) * 0.5) + g(b));
+	}
+	return s * 1.1283791671;
+}
+
 #define remap(t) 0.5 + 0.5 * fract(t)
 
 vec2 f(vec2 z) {
-	return cexp(cinv(z));
-}
-
-vec3 getColor(float t)
-{
-	// Color ramp function
-	return cols[0] + cols[1] * cos(TAU * (cols[2] * t + cols[3]));
+	return erf(z);
 }
 
 vec3 domcol(vec2 z) 
 {
 	// Calculate the function and its angles and magnitudes
 	vec2 v = f(z);
-	float l = log(cabs(v));
+	float l = cabs(v);
 	float a = carg(v);
 	float t = (PI + a) / TAU;
 
-	// Calculate the brightnesses
-	float lBrt = remap(l);
-	float aBrt = remap(a);
+	// Calculate the color and brightnesses
+	float lBrt = remap(lMult * log(l));
+	float aBrt = remap(aMult * a);
+	vec3 col = 0.5 + 0.5 * cos(TAU * (t + vec3(0., 0.33, 0.67)));
 
-	return getColor(t) * lBrt * aBrt;
+	return col * lBrt * aBrt;
 }
 
 void main() {

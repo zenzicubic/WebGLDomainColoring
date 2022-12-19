@@ -4,6 +4,7 @@ let scene, renderer, camera, plane;
 let uniforms, loader, fragmentShader;
 
 let scale, pos;
+let lMult = 2, aMult = 3;
 const deltaP = 0.075, scaleFac = 0.96;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -91,7 +92,9 @@ function load() {
 	uniforms = {
 		res:  {value: new THREE.Vector2(width, height)},
 		scale: {value: scale},
-		center: {value: new THREE.Vector2()}
+		center: {value: new THREE.Vector2()},
+		lMult: {value: lMult},
+		aMult: {value: aMult}
 	};
 
 	let material = new THREE.ShaderMaterial({
@@ -106,6 +109,8 @@ function load() {
 
 function render() {
 	// set uniform values and redraw shader
+	uniforms.lMult.value = lMult;
+	uniforms.aMult.value = aMult;
 	uniforms.scale.value = scale;
 	uniforms.center.value.set(pos[0], pos[1]);
 
