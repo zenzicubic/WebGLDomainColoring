@@ -78,7 +78,7 @@ vec3 domcol(vec2 z)
 
 void main() {
 	// Generate the plot
-	vec2 uv = (gl_FragCoord.xy - res.xy) / res.y;
+	vec2 uv = (2. * gl_FragCoord.xy - res.xy) / res.y;
 	vec2 m = scale * uv + center;
 	
 	col = vec4(domcol(m), 1.);

@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		canvas,
 		preserveDrawingBuffer: true
 	});
-	renderer.setPixelRatio(window.devicePixelRatio);
 	renderer.setSize(width, height); 
 
 	camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -1, 1);
