@@ -18,7 +18,7 @@ vec2 conj(vec2 z) { return vec2(z.x, -z.y); }
 vec2 itimes(vec2 z) { return vec2(-z.y, z.x); }
 
 vec2 cis(float t) { return vec2(cos(t), sin(t)); }
-vec2 cmul(vec2 a, vec2 b) { return mat2(a.x, a.y, -a.y, a.x) * b; }
+vec2 cmul(vec2 a, vec2 b) { return mat2(a, -a.y, a.x) * b; }
 vec2 cinv(vec2 z) { return conj(z) / dot(z, z); }
 vec2 cdiv(vec2 a, vec2 b) { return cmul(a, cinv(b)); }
 
@@ -57,7 +57,7 @@ vec2 erf(vec2 z) {
 	vec2 a, b, s = vec2(0.);
 	for (float t = 0.; t < 1.; t += 2. * dt) {
 		a = z * t, b = z * (t + dt);
-		s += cmul((b - a) / 6., g(a) + g((a + b) * 0.5) + g(b));
+		s += cmul((b - a) / 6., g(a) + 4. * g((a + b) * 0.5) + g(b));
 	}
 	return s * 1.1283791671;
 }
