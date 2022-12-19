@@ -93,8 +93,8 @@ function load() {
 		res:  {value: new THREE.Vector2(width, height)},
 		scale: {value: scale},
 		center: {value: new THREE.Vector2()},
-		lMult: {value: lMult},
-		aMult: {value: aMult}
+		lMult: {value: 1},
+		aMult: {value: 1}
 	};
 
 	let material = new THREE.ShaderMaterial({
@@ -109,8 +109,8 @@ function load() {
 
 function render() {
 	// set uniform values and redraw shader
-	uniforms.lMult.value = lMult;
-	uniforms.aMult.value = aMult;
+	uniforms.lMult.value = lMult / Math.PI;
+	uniforms.aMult.value = aMult / Math.PI;
 	uniforms.scale.value = scale;
 	uniforms.center.value.set(pos[0], pos[1]);
 
